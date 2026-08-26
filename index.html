@@ -462,14 +462,14 @@ tr:hover { background: #252932; }
     text-shadow: 0 2px 4px rgba(0,0,0,.8);
 }
 
+/* All award artwork uses the same three-column stat layout. */
 .award-stat-value {
     position: absolute;
-    color: #e3ded3;
-    top: 85.5%;
+    top: 75%;
     transform: translate(-50%, -50%);
-    width: 18%;
+    width: 23%;
     text-align: center;
-    color: #e3ded3;
+    color: #f2eee5;
     font-size: clamp(15px, 3.9vw, 23px);
     font-weight: 900;
     line-height: 1;
@@ -477,21 +477,31 @@ tr:hover { background: #252932; }
     text-shadow: 0 2px 4px rgba(0,0,0,.85);
 }
 
-/* MVP artwork has its own field geometry. */
-/* MVP artwork:
-   - stat values sit inside the purple stats box
-   - player name sits below the box */
-.award-mvp-player {
+.award-mvp-player,
+.award-headhunter-player,
+.award-lowrider-player,
+.award-thebutcher-player {
     top: 86%;
 }
 
-.award-mvp-stat {
-    top: 75%;
-}
+/* Stat columns are aligned to the three fields in every card. */
+.award-mvp-stat-kills,
+.award-stat-headshots,
+.award-lowrider-stat-time,
+.award-thebutcher-stat-kills,
+.award-camper-stat-time { left: 20%; }
 
-.award-mvp-stat-kills { left: 28%; }
-.award-mvp-stat-deaths { left: 55%; }
-.award-mvp-stat-kd { left: 84%; }
+.award-mvp-stat-deaths,
+.award-stat-hspercent,
+.award-lowrider-stat-count,
+.award-thebutcher-stat-hits,
+.award-camper-stat-longest { left: 50%; }
+
+.award-mvp-stat-kd,
+.award-stat-totalkills,
+.award-lowrider-stat-percent,
+.award-thebutcher-stat-damage,
+.award-camper-stat-kills { left: 80%; }
 
 .award-stat-value.stat-long {
     font-size: clamp(14px, 3.5vw, 21px);
@@ -501,46 +511,7 @@ tr:hover { background: #252932; }
     font-size: clamp(13px, 3vw, 18px);
 }
 
-/* Head Hunter artwork:
-   use the same field order as the corrected MVP:
-   stat values inside the purple stats box,
-   player name below the box. */
-.award-stat-headshots { left: 28%; }
-.award-stat-hspercent { left: 55%; }
-.award-stat-totalkills { left: 84%; }
-
-.award-stat-headshots,
-.award-stat-hspercent,
-.award-stat-totalkills {
-    top: 75%;
-    color: #f2eee5;
-}
-
-.award-headhunter-player {
-    top: 86%;
-}
-
-/* Low Rider artwork: same field order as the corrected MVP/Head Hunter. */
-.award-lowrider-player {
-    top: 86%;
-}
-
-.award-thebutcher-player {
-    top: 86%;
-}
-
-/* The Butcher: keep the number in a reserved area to the
-   right of "HUMILHOU:" so larger values do not move the label. */
-.award-thebutcher-stat {
-    top: 73.5%;
-    left: 75%;
-    width: 18%;
-    text-align: center;
-    color: #f2eee5;
-}
-
-/* The Camper artwork: three values in the purple stats panel,
-   with the player name in the gold name field below it. */
+/* The Camper player name sits slightly higher in its artwork. */
 .award-camper-player {
     top: 84.3%;
     left: 20%;
@@ -548,22 +519,12 @@ tr:hover { background: #252932; }
 }
 
 .award-camper-stat {
-    top: 76.7%;
-    width: 23%;
     color: #f2eee5;
 }
 
-.award-camper-stat-time { left: 25%; }
-.award-camper-stat-longest { left: 52.5%; }
-.award-camper-stat-kills { left: 80%; }
-
-.award-lowrider-stat {
-    top: 75%;
+.award-thebutcher-stat {
+    color: #f2eee5;
 }
-
-.award-lowrider-stat-time { left: 28%; }
-.award-lowrider-stat-count { left: 55%; }
-.award-lowrider-stat-percent { left: 84%; }
 
 .award-missing-image {
     display: flex;
@@ -596,7 +557,7 @@ tr:hover { background: #252932; }
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.94</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.95</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Overview</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -944,7 +905,9 @@ tr:hover { background: #252932; }
 
             <div class="award-player award-thebutcher-player">hardlife</div>
 
-            <div class="award-stat-value award-thebutcher-stat">4</div>
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-kills ">4</div>
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-hits ">0</div>
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-damage ">0</div>
         </div>
     </div>
 </div><div class="award-card">
