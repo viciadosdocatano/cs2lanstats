@@ -489,19 +489,22 @@ tr:hover { background: #252932; }
 .award-stat-headshots,
 .award-lowrider-stat-time,
 .award-thebutcher-stat-kills,
-.award-camper-stat-time { left: 20%; }
+.award-camper-stat-time,
+.award-blastking-stat-kills { left: 20%; }
 
 .award-mvp-stat-deaths,
 .award-stat-hspercent,
 .award-lowrider-stat-count,
 .award-thebutcher-stat-hits,
-.award-camper-stat-longest { left: 50%; }
+.award-camper-stat-longest,
+.award-blastking-stat-damage { left: 50%; }
 
 .award-mvp-stat-kd,
 .award-stat-totalkills,
 .award-lowrider-stat-percent,
 .award-thebutcher-stat-damage,
-.award-camper-stat-kills { left: 80%; }
+.award-camper-stat-kills,
+.award-blastking-stat-grenades { left: 80%; }
 
 .award-stat-value.stat-long {
     font-size: clamp(14px, 3.5vw, 21px);
@@ -512,6 +515,10 @@ tr:hover { background: #252932; }
 }
 
 /* The Camper player name sits slightly higher in its artwork. */
+.award-blastking-player {
+    top: 84.3%;
+}
+
 .award-camper-player {
     top: 84.3%;
     left: 20%;
@@ -557,7 +564,7 @@ tr:hover { background: #252932; }
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.96</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.97</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Overview</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -931,7 +938,7 @@ tr:hover { background: #252932; }
 <td>1.00</td>
 <td>14%</td>
 <td>839</td>
-<td class="weapons"><span class="muted">—</span></td>
+<td class="weapons"><span class="award-badge" title="Most HE grenade kills.">Blast King</span></td>
 </tr>
 <tr>
 <td>6</td>
@@ -1166,6 +1173,20 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-camper-stat award-camper-stat-time stat-extra-long">1m 05s</div>
             <div class="award-stat-value award-camper-stat award-camper-stat-longest stat-extra-long">0m 48s</div>
             <div class="award-stat-value award-camper-stat award-camper-stat-kills ">0</div>
+        </div>
+    </div>
+</div><div class="award-card">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/blastking_award.png"
+                 alt="LANStats Blast King Award">
+
+            <div class="award-player award-blastking-player">Litmow</div>
+
+            <div class="award-stat-value award-blastking-stat award-blastking-stat-kills ">1</div>
+            <div class="award-stat-value award-blastking-stat award-blastking-stat-damage ">0</div>
+            <div class="award-stat-value award-blastking-stat award-blastking-stat-grenades ">0</div>
         </div>
     </div>
 </div></div>
