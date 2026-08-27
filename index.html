@@ -586,13 +586,25 @@ tr:hover { background: #252932; }
     }
     .nav-btn { white-space: nowrap; }
 }
+html {
+    scroll-behavior: smooth;
+}
+
+.award-card:target {
+    animation: awardTargetHighlight 1.5s ease-out;
+}
+
+@keyframes awardTargetHighlight {
+    0% { transform: scale(1.025); }
+    100% { transform: scale(1); }
+}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.109</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.110</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Overview</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -766,7 +778,7 @@ tr:hover { background: #252932; }
 <td>3.57</td>
 <td>42%</td>
 <td>6529</td>
-<td class="weapons"><span class="award-badge" title="Best overall K/D performance.">MVP</span> <span class="award-badge" title="Most knife kills.">The Butcher</span> <span class="award-badge" title="Most AWP and SSG 08 kills.">Sniper King</span> <span class="award-badge" title="Most HE grenade kills.">Blast King</span> <span class="award-badge" title="Most headshots.">Head Hunter</span></td>
+<td class="weapons"><a class="award-badge" href="#award-mvp" title="Best overall K/D performance.">MVP</a> <a class="award-badge" href="#award-butcher" title="Most knife kills.">The Butcher</a> <a class="award-badge" href="#award-sniperking" title="Most AWP and SSG 08 kills.">Sniper King</a> <a class="award-badge" href="#award-blastking" title="Most HE grenade kills.">Blast King</a> <a class="award-badge" href="#award-headshot" title="Most headshots.">Head Hunter</a></td>
 </tr>
 <tr>
 <td>2</td>
@@ -778,7 +790,7 @@ tr:hover { background: #252932; }
 <td>1.63</td>
 <td>42%</td>
 <td>4761</td>
-<td class="weapons"><span class="award-badge" title="Most knife deaths suffered.">Afiador de Facas</span> <span class="award-badge" title="Most missed firearm shots.">Azelha</span></td>
+<td class="weapons"><a class="award-badge" href="#award-afiadordefacas" title="Most knife deaths suffered.">Afiador de Facas</a> <a class="award-badge" href="#award-azelha" title="Most missed firearm shots.">Azelha</a></td>
 </tr>
 <tr>
 <td>3</td>
@@ -838,7 +850,7 @@ tr:hover { background: #252932; }
 <td>0.62</td>
 <td>50%</td>
 <td>2851</td>
-<td class="weapons"><span class="award-badge" title="Most pistol kills.">John Wick</span></td>
+<td class="weapons"><a class="award-badge" href="#award-johnwick" title="Most pistol kills.">John Wick</a></td>
 </tr>
 <tr>
 <td>8</td>
@@ -850,7 +862,7 @@ tr:hover { background: #252932; }
 <td>0.52</td>
 <td>36%</td>
 <td>3558</td>
-<td class="weapons"><span class="award-badge" title="Most actual crouch time, with at least one minute of active gameplay.">Low Rider</span> <span class="award-badge" title="Most accumulated camping time.">The Camper</span></td>
+<td class="weapons"><a class="award-badge" href="#award-lowrider" title="Most actual crouch time, with at least one minute of active gameplay.">Low Rider</a> <a class="award-badge" href="#award-camper" title="Most accumulated camping time.">The Camper</a></td>
 </tr>
 <tr>
 <td>9</td>
@@ -886,7 +898,7 @@ tr:hover { background: #252932; }
     </div>
 </div>
 <div class="awards-grid">
-<div class="award-mvp-row"><div class="award-card">
+<div class="award-mvp-row"><div class="award-card" id="award-mvp">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -900,7 +912,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-mvp-stat award-mvp-stat-kd ">3.57</div>
         </div>
     </div>
-</div></div><div class="award-secondary-grid"><div class="award-card">
+</div></div><div class="award-secondary-grid"><div class="award-card" id="award-headshot">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -914,7 +926,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-stat-totalkills ">50</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-lowrider">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -928,7 +940,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-lowrider-stat award-lowrider-stat-percent ">8.4%</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-thebutcher">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -942,7 +954,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-damage ">720</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-camper">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -955,7 +967,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-camper-stat award-camper-stat-kills ">0</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-blastking">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -969,7 +981,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-blastking-stat award-blastking-stat-grenades ">16</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-johnwick">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -983,7 +995,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-johnwick-stat award-johnwick-stat-damage ">1486</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-sniperking">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -997,7 +1009,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-sniperking-stat award-sniperking-stat-average stat-extra-long">20.8 m</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-afiadordefacas">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -1011,7 +1023,7 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-damage ">118</div>
         </div>
     </div>
-</div><div class="award-card">
+</div><div class="award-card" id="award-azelha">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image" src="cards/azelha_award.png" alt="LANStats Azelha Award">
@@ -1041,6 +1053,36 @@ tr:hover { background: #252932; }
     new ResizeObserver(updateDashboardTopHeight).observe(dashboardTop);
     }
     
+    document.querySelectorAll('a.award-badge').forEach(link => {
+        link.addEventListener('click', event => {
+            const targetId = link.getAttribute('href');
+            if (!targetId || !targetId.startsWith('#award-')) return;
+
+            event.preventDefault();
+
+            const awardsButton = document.querySelector('.nav-btn[data-section="awards"]');
+            const awardsSection = document.getElementById('awards');
+
+            document.querySelectorAll('.nav-btn')
+                .forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.dashboard-section')
+                .forEach(s => s.classList.remove('active'));
+
+            if (awardsButton) awardsButton.classList.add('active');
+            if (awardsSection) awardsSection.classList.add('active');
+
+            requestAnimationFrame(() => {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+    });
+
     const rankingScroll = document.querySelector('.ranking-table-wrapper');
     const rankingStickyTable = document.querySelector('.ranking-sticky-table');
 
