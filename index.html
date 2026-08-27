@@ -610,7 +610,7 @@ html {
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.112</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.113</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Overview</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -1077,15 +1077,23 @@ html {
             if (awardsButton) awardsButton.classList.add('active');
             if (awardsSection) awardsSection.classList.add('active');
 
-            requestAnimationFrame(() => {
+            const scrollToAward = () => {
                 const target = document.querySelector(targetId);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'center'
                     });
+                    return true;
                 }
-            });
+                return false;
+            };
+
+            if (!scrollToAward()) {
+                setTimeout(() => {
+                    scrollToAward();
+                }, 100);
+            }
         });
     });
 
