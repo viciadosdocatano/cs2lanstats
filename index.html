@@ -491,7 +491,8 @@ tr:hover { background: #252932; }
 .award-thebutcher-stat-kills,
 .award-camper-stat-time,
 .award-blastking-stat-kills,
-.award-johnwick-stat-kills { left: 20%; }
+.award-johnwick-stat-kills,
+.award-sniperking-stat-kills { left: 20%; }
 
 .award-mvp-stat-deaths,
 .award-stat-hspercent,
@@ -499,7 +500,8 @@ tr:hover { background: #252932; }
 .award-thebutcher-stat-hits,
 .award-camper-stat-longest,
 .award-blastking-stat-damage,
-.award-johnwick-stat-shots { left: 50%; }
+.award-johnwick-stat-shots,
+.award-sniperking-stat-longest { left: 50%; }
 
 .award-mvp-stat-kd,
 .award-stat-totalkills,
@@ -507,7 +509,8 @@ tr:hover { background: #252932; }
 .award-thebutcher-stat-damage,
 .award-camper-stat-kills,
 .award-blastking-stat-grenades,
-.award-johnwick-stat-damage { left: 80%; }
+.award-johnwick-stat-damage,
+.award-sniperking-stat-average { left: 80%; }
 
 .award-stat-value.stat-long {
     font-size: clamp(14px, 3.5vw, 21px);
@@ -523,6 +526,10 @@ tr:hover { background: #252932; }
 }
 
 .award-johnwick-player {
+    top: 84.3%;
+}
+
+.award-sniperking-player {
     top: 84.3%;
 }
 
@@ -571,7 +578,7 @@ tr:hover { background: #252932; }
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.102</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.103</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Overview</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -1791,7 +1798,7 @@ tr:hover { background: #252932; }
 <td>1.24</td>
 <td>45%</td>
 <td>8981</td>
-<td class="weapons"><span class="award-badge" title="Most AWP kills.">AWP King</span></td>
+<td class="weapons"><span class="award-badge" title="Most AWP and SSG 08 kills.">Rei Da Sniper</span> <span class="award-badge" title="Most AWP kills.">AWP King</span></td>
 </tr>
 <tr>
 <td>12</td>
@@ -2270,6 +2277,20 @@ tr:hover { background: #252932; }
             <div class="award-stat-value award-johnwick-stat award-johnwick-stat-kills ">30</div>
             <div class="award-stat-value award-johnwick-stat award-johnwick-stat-shots ">148</div>
             <div class="award-stat-value award-johnwick-stat award-johnwick-stat-damage ">2939</div>
+        </div>
+    </div>
+</div><div class="award-card">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/sniperking_award.png"
+                 alt="LANStats Rei Da Sniper Award">
+
+            <div class="award-player award-sniperking-player">Seal</div>
+
+            <div class="award-stat-value award-sniperking-stat award-sniperking-stat-kills ">16</div>
+            <div class="award-stat-value award-sniperking-stat award-sniperking-stat-longest ">—</div>
+            <div class="award-stat-value award-sniperking-stat award-sniperking-stat-average ">—</div>
         </div>
     </div>
 </div></div>
