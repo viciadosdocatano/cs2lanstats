@@ -339,6 +339,18 @@ h1 {
     text-overflow: ellipsis;
 }
 
+/* Column headers must remain fully readable on narrow screens.
+   They may wrap onto two lines instead of being truncated. */
+.match-table th {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: normal;
+    word-break: normal;
+    line-height: 1.15;
+    vertical-align: middle;
+}
+
 .match-table .player {
     overflow: visible;
     text-overflow: clip;
