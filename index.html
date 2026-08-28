@@ -717,13 +717,43 @@ html {
     0% { transform: scale(1.025); }
     100% { transform: scale(1); }
 }
+/* Awards in Global Ranking: use the available horizontal
+   space efficiently and wrap only when necessary. */
+.ranking-table .awards-cell {
+    white-space: normal;
+}
+
+.ranking-table .awards-cell .award-badge,
+.ranking-table .awards-cell a {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 6px;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 1200px) {
+    .ranking-table .awards-cell {
+        white-space: normal;
+    }
+}
+
+.ranking-table td:last-child {
+    white-space: normal;
+}
+
+.ranking-table td:last-child a {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-right: 6px;
+    margin-bottom: 4px;
+}
 </style>
 </head>
 <body>
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.124</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.125</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Matches</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
