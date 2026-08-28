@@ -315,6 +315,24 @@ h1 {
     table-layout: fixed;
 }
 
+/* Mobile: keep the table readable and allow horizontal scrolling. */
+@media (max-width: 600px) {
+    .match-table {
+        width: 900px;
+        min-width: 900px;
+        max-width: none;
+        table-layout: fixed;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
 .match-table th,
 .match-table td {
     overflow: hidden;
