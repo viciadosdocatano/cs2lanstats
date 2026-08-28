@@ -265,39 +265,39 @@ h1 {
 
     .ranking-table th:nth-child(2),
     .ranking-table td:nth-child(2),
-    .ranking-sticky-table th:nth-child(2) { width: 18%; }
+    .ranking-sticky-table th:nth-child(2) { width: 16%; }
 
     .ranking-table th:nth-child(3),
     .ranking-table td:nth-child(3),
-    .ranking-sticky-table th:nth-child(3) { width: 9%; }
+    .ranking-sticky-table th:nth-child(3) { width: 8%; }
 
     .ranking-table th:nth-child(4),
     .ranking-table td:nth-child(4),
-    .ranking-sticky-table th:nth-child(4) { width: 8%; }
+    .ranking-sticky-table th:nth-child(4) { width: 7%; }
 
     .ranking-table th:nth-child(5),
     .ranking-table td:nth-child(5),
-    .ranking-sticky-table th:nth-child(5) { width: 8%; }
+    .ranking-sticky-table th:nth-child(5) { width: 7%; }
 
     .ranking-table th:nth-child(6),
     .ranking-table td:nth-child(6),
-    .ranking-sticky-table th:nth-child(6) { width: 8%; }
+    .ranking-sticky-table th:nth-child(6) { width: 7%; }
 
     .ranking-table th:nth-child(7),
     .ranking-table td:nth-child(7),
-    .ranking-sticky-table th:nth-child(7) { width: 11%; }
+    .ranking-sticky-table th:nth-child(7) { width: 10%; }
 
     .ranking-table th:nth-child(8),
     .ranking-table td:nth-child(8),
-    .ranking-sticky-table th:nth-child(8) { width: 11%; }
+    .ranking-sticky-table th:nth-child(8) { width: 10%; }
 
     .ranking-table th:nth-child(9),
     .ranking-table td:nth-child(9),
-    .ranking-sticky-table th:nth-child(9) { width: 8%; }
+    .ranking-sticky-table th:nth-child(9) { width: 7%; }
 
     .ranking-table th:nth-child(10),
     .ranking-table td:nth-child(10),
-    .ranking-sticky-table th:nth-child(10) { width: 15%; }
+    .ranking-sticky-table th:nth-child(10) { width: 23%; }
 }
 
 /* Desktop keeps the original sticky table header. */
@@ -717,37 +717,18 @@ html {
     0% { transform: scale(1.025); }
     100% { transform: scale(1); }
 }
-/* Awards in Global Ranking: use the available horizontal
-   space efficiently and wrap only when necessary. */
-.ranking-table .awards-cell {
-    white-space: normal;
-}
-
-.ranking-table .awards-cell .award-badge,
-.ranking-table .awards-cell a {
-    display: inline-flex;
-    vertical-align: middle;
-    margin-right: 6px;
-    margin-bottom: 4px;
-}
-
-@media (max-width: 1200px) {
-    .ranking-table .awards-cell {
-        white-space: normal;
-    }
-}
-
+/* Global Ranking Awards: allow badges to share lines inside
+   the wider Awards column. */
 .ranking-table td:last-child {
     white-space: normal;
 }
 
-.ranking-table td:last-child a {
-    display: inline-flex;
+.ranking-table td:last-child .award-badge {
+    display: inline-block;
     vertical-align: middle;
     margin-right: 6px;
     margin-bottom: 4px;
 }
-</style>
 </head>
 <body>
 <div class="container">
