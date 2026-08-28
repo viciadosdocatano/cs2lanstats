@@ -317,6 +317,13 @@ h1 {
 
 /* Mobile: keep the table readable and allow horizontal scrolling. */
 @media (max-width: 1200px) {
+    /* Global Ranking: slightly more horizontal breathing room
+       between compact column headings on narrow screens. */
+    .ranking-table th {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
     .match-table {
         width: 1150px;
         min-width: 1150px;
