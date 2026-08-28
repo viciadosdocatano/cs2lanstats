@@ -316,10 +316,10 @@ h1 {
 }
 
 /* Mobile: keep the table readable and allow horizontal scrolling. */
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
     .match-table {
-        width: 900px;
-        min-width: 900px;
+        width: 1150px;
+        min-width: 1150px;
         max-width: none;
         table-layout: fixed;
     }
@@ -342,7 +342,7 @@ h1 {
 /* Column headers must remain fully readable on narrow screens.
    They may wrap onto two lines instead of being truncated. */
 .match-table th {
-    white-space: normal;
+    white-space: nowrap;
     overflow: visible;
     text-overflow: clip;
     overflow-wrap: normal;
