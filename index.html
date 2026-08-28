@@ -690,8 +690,11 @@ tr:hover { background: #252932; }
 @media (max-width: 700px) {
     body { padding: 10px; }
     .match-info {
-        gap: 10px;
-        flex-direction: column;
+        gap: 20px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        white-space: nowrap;
     }
     .dashboard-nav {
         width: 100%;
@@ -735,7 +738,7 @@ html {
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.126</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.127</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Matches</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
