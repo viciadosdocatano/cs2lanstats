@@ -597,6 +597,10 @@ tr:hover { background: #252932; }
     top: 84.3%;
 }
 
+.award-galinhas-mortas-player {
+    top: 84.3%;
+}
+
 /* Stat columns are aligned to the three fields in every card. */
 .award-mvp-stat-kills,
 .award-stat-headshots,
@@ -607,7 +611,8 @@ tr:hover { background: #252932; }
 .award-johnwick-stat-kills,
 .award-sniperking-stat-kills,
 .award-azelha-stat-shots,
-.award-afiadordefacas-stat-deaths { left: 20%; }
+.award-afiadordefacas-stat-deaths,
+.award-galinhas-mortas-stat-total { left: 20%; }
 
 .award-mvp-stat-deaths,
 .award-stat-hspercent,
@@ -618,7 +623,8 @@ tr:hover { background: #252932; }
 .award-johnwick-stat-shots,
 .award-sniperking-stat-longest,
 .award-azelha-stat-missed,
-.award-afiadordefacas-stat-hits { left: 50%; }
+.award-afiadordefacas-stat-hits,
+.award-galinhas-mortas-stat-max { left: 50%; }
 
 .award-mvp-stat-kd,
 .award-stat-totalkills,
@@ -629,7 +635,8 @@ tr:hover { background: #252932; }
 .award-johnwick-stat-damage,
 .award-sniperking-stat-average,
 .award-azelha-stat-accuracy,
-.award-afiadordefacas-stat-damage { left: 80%; }
+.award-afiadordefacas-stat-damage,
+.award-galinhas-mortas-stat-average { left: 80%; }
 
 .award-stat-value.stat-long {
     font-size: clamp(14px, 3.5vw, 21px);
@@ -748,7 +755,7 @@ html {
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.130-chicken-test</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.131-chicken</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Matches</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -756,6 +763,33 @@ html {
 </nav>
 </div>
 <section id="overview" class="dashboard-section active">
+<div class="match">
+<div class="match-header">
+<div class="match-title">MATCH #65 | de_dust2</div>
+<div class="match-info">
+<span>31/08/2026 02:17</span>
+<span>Deathmatch</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">hardlife <span class="human">HUMAN</span></td>
+<td class="positive">0</td>
+<td class="negative">0</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+</tbody></table></div>
+</div>
 <div class="match">
 <div class="match-header">
 <div class="match-title">MATCH #64 | de_dust2</div>
@@ -6476,7 +6510,7 @@ html {
 <tr>
 <td>1</td>
 <td class="ranking-player">hardlife <span class="human">HUMAN</span></td>
-<td>64</td>
+<td>65</td>
 <td class="positive">1209</td>
 <td class="negative">260</td>
 <td>49</td>
@@ -7306,8 +7340,8 @@ html {
 
             <div class="award-player award-lowrider-player">hardlife</div>
 
-            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-time stat-extra-long">1288.4s</div>
-            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-count ">717</div>
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-time stat-extra-long">1289.0s</div>
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-count ">718</div>
             <div class="award-stat-value award-lowrider-stat award-lowrider-stat-percent ">6.4%</div>
         </div>
     </div>
@@ -7362,7 +7396,7 @@ html {
             <div class="award-player award-johnwick-player">hardlife</div>
 
             <div class="award-stat-value award-johnwick-stat award-johnwick-stat-kills ">102</div>
-            <div class="award-stat-value award-johnwick-stat award-johnwick-stat-shots ">826</div>
+            <div class="award-stat-value award-johnwick-stat award-johnwick-stat-shots ">827</div>
             <div class="award-stat-value award-johnwick-stat award-johnwick-stat-damage stat-long">12684</div>
         </div>
     </div>
@@ -7394,13 +7428,18 @@ html {
             <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-damage ">569</div>
         </div>
     </div>
+</div><div class="award-card">
+    <div class="award-card-inner award-missing-image">
+        O Galinocida artwork missing.<br>
+        Copy <strong>galinhocida_award.png</strong> to the LANStats <strong>data\cards</strong> folder.
+    </div>
 </div><div class="award-card" id="award-azelha">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image" src="cards/azelha_award.png" alt="LANStats Azelha Award">
             <div class="award-player award-azelha-player">hardlife</div>
-            <div class="award-stat-value award-azelha-stat award-azelha-stat-shots ">6751</div>
-            <div class="award-stat-value award-azelha-stat award-azelha-stat-missed ">4285</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-shots ">6754</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-missed ">4288</div>
             <div class="award-stat-value award-azelha-stat award-azelha-stat-accuracy stat-long">36.5%</div>
         </div>
     </div>
