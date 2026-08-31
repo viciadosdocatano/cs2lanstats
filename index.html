@@ -593,8 +593,7 @@ tr:hover { background: #252932; }
 .award-mvp-player,
 .award-headhunter-player,
 .award-lowrider-player,
-.award-thebutcher-player,
-.award-galinhocida-player {
+.award-thebutcher-player {
     top: 84.3%;
 }
 
@@ -609,8 +608,6 @@ tr:hover { background: #252932; }
 .award-sniperking-stat-kills,
 .award-azelha-stat-shots,
 .award-afiadordefacas-stat-deaths { left: 20%; }
-
-.award-galinhocida-stat-kills { left: 50%; }
 
 .award-mvp-stat-deaths,
 .award-stat-hspercent,
@@ -641,6 +638,18 @@ tr:hover { background: #252932; }
 .award-stat-value.stat-extra-long {
     font-size: clamp(13px, 3vw, 18px);
 }
+
+.award-chickenkiller-player {
+    top: 71.5%;
+}
+
+.award-chickenkiller-stat {
+    top: 82.8%;
+}
+
+.award-chickenkiller-stat-total { left: 28%; }
+.award-chickenkiller-stat-max { left: 52%; }
+.award-chickenkiller-stat-avg { left: 78%; }
 
 /* The Camper player name sits slightly higher in its artwork. */
 .award-blastking-player {
@@ -751,7 +760,7 @@ html {
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.132</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.130</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Matches</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -7257,7 +7266,7 @@ html {
 
             <div class="award-stat-value award-lowrider-stat award-lowrider-stat-time stat-extra-long">1286.0s</div>
             <div class="award-stat-value award-lowrider-stat award-lowrider-stat-count ">711</div>
-            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-percent ">6.6%</div>
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-percent ">6.5%</div>
         </div>
     </div>
 </div><div class="award-card" id="award-butcher">
@@ -7273,11 +7282,6 @@ html {
             <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-hits ">74</div>
             <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-damage ">6580</div>
         </div>
-    </div>
-</div><div class="award-card">
-    <div class="award-card-inner award-missing-image">
-        Galinhocida artwork missing.<br>
-        Copy <strong>galinhocida_award.png</strong> to the LANStats <strong>data\cards</strong> folder.
     </div>
 </div><div class="award-card" id="award-camper">
     <div class="award-card-inner">
