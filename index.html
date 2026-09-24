@@ -522,6 +522,10 @@ tr:hover { background: #252932; }
     height: auto;
 }
 
+.award-card-unawarded .award-art-image {
+    opacity: 0.35;
+}
+
 .award-player {
     position: absolute;
     color: #58247e;
@@ -789,7 +793,7 @@ html {
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.159</div>
+<div class="subtitle">CS2 LAN Statistics v0.8.160</div>
 <nav class="dashboard-nav">
     <button class="nav-btn active" data-section="overview">Matches</button>
     <button class="nav-btn" data-section="ranking">Global Ranking</button>
@@ -819,7 +823,103 @@ html {
 <section id="awards" class="dashboard-section">
 <div class="match">
 <div class="awards-grid">
-
+<div class="award-mvp-row"><div class="award-card award-card-unawarded" id="award-mvp">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/mvp_award.png"
+                 alt="LANStats MVP Award">
+        </div>
+    </div>
+</div></div><div class="award-secondary-grid"><div class="award-card award-card-unawarded" id="award-headshot">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/headhunter_award.png"
+                 alt="LANStats Head Hunter Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-lowrider">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/agacha_award.png"
+                 alt="LANStats Low Rider Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-butcher">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/thebutcher_award.png"
+                 alt="LANStats The Butcher Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-camper">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/camper_award.png"
+                 alt="LANStats The Camper Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-blastking">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/blastking_award.png"
+                 alt="LANStats Blast King Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-johnwick">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/johnwick_award.png"
+                 alt="LANStats John Wick Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-sniperking">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/sniperking_award.png"
+                 alt="LANStats Sniper King Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-afiadordefacas">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/afiadordefacas_award.png"
+                 alt="LANStats Afiador de Facas Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-azelha">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/azelha_award.png"
+                 alt="LANStats Azelha Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-galinhas-mortas">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/chickenkiller_award.png"
+                 alt="LANStats Chicken Killer Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-fastestarmsrace">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/fastestarmsrace_award.png"
+                 alt="LANStats Fastest Arms Race Award">
+        </div>
+    </div>
+</div></div>
 </div></div></section>
     <script>
     const dashboardTop = document.querySelector('.dashboard-top');
