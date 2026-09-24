@@ -801,7 +801,57 @@ html {
 </nav>
 </div>
 <section id="overview" class="dashboard-section active">
-<div class="match"><div class="empty">No matches recorded yet.</div></div>
+<div class="match">
+<div class="match-header">
+<div class="match-title">MATCH #1 | de_dust2</div>
+<div class="match-info">
+<span>24/09/2026 20:38</span>
+<span>Deathmatch</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">RyzenPT</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">hardlife</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+</tbody></table></div>
+</div>
 </section>
 <section id="ranking" class="dashboard-section">
 <div class="match ranking-match">
@@ -819,19 +869,87 @@ html {
     <th>#</th><th>Player</th><th>Score</th><th>Matches</th><th>Kills</th><th>Deaths</th>
     <th>Assists</th><th>K/D Ratio</th><th>Headshot %</th><th>Damage</th><th>Awards</th>
 </tr></thead><tbody>
+<tr>
+<td>1</td>
+<td class="ranking-player">FlavioPrates</td>
+<td class="score">455</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><a class="award-badge" href="#award-mvp" title="Best overall K/D performance.">MVP</a> <a class="award-badge" href="#award-azelha" title="Most missed firearm shots.">Azelha</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td class="ranking-player">hardlife</td>
+<td class="score">455</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><a class="award-badge" href="#award-camper" title="Most accumulated camping time.">The Camper</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td class="ranking-player">RyzenPT</td>
+<td class="score">455</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><span class="muted">—</span></td>
+</tr>
 </tbody></table></div></div></section>
 <section id="awards" class="dashboard-section">
 <div class="match">
 <div class="awards-grid">
-<div class="award-mvp-row"><div class="award-card award-card-unawarded" id="award-mvp">
+<div class="award-mvp-row"><div class="award-card" id="award-mvp">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
                  src="cards/mvp_award.png"
                  alt="LANStats MVP Award">
+
+            <div class="award-player award-mvp-player">FlavioPrates</div>
+
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-kills ">0</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-deaths ">1</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-kd ">0.00</div>
         </div>
     </div>
-</div></div><div class="award-secondary-grid"><div class="award-card award-card-unawarded" id="award-headshot">
+</div></div><div class="award-secondary-grid"><div class="award-card" id="award-camper">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/camper_award.png"
+                 alt="LANStats The Camper Award">
+
+            <div class="award-player award-camper-player">hardlife</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-time stat-extra-long">0m 37s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-longest stat-extra-long">0m 37s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-kills ">0</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-azelha">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image" src="cards/azelha_award.png" alt="LANStats Azelha Award">
+            <div class="award-player award-azelha-player">FlavioPrates</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-shots ">1</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-missed ">1</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-accuracy ">0.0%</div>
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-headshot">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -853,14 +971,6 @@ html {
             <img class="award-art-image"
                  src="cards/thebutcher_award.png"
                  alt="LANStats The Butcher Award">
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-camper">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/camper_award.png"
-                 alt="LANStats The Camper Award">
         </div>
     </div>
 </div><div class="award-card award-card-unawarded" id="award-blastking">
@@ -893,14 +1003,6 @@ html {
             <img class="award-art-image"
                  src="cards/afiadordefacas_award.png"
                  alt="LANStats Afiador de Facas Award">
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-azelha">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/azelha_award.png"
-                 alt="LANStats Azelha Award">
         </div>
     </div>
 </div><div class="award-card award-card-unawarded" id="award-galinhas-mortas">
