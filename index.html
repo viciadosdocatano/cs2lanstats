@@ -64,12 +64,11 @@ h1 {
 .dashboard-nav {
     display: flex;
     gap: 8px;
-    margin: 0 0 30px 0;
-    padding: 5px;
-    background: #181b21;
-    border: 1px solid #2b2f38;
-    border-radius: 10px;
-    width: fit-content;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    width: auto;
 }
 
 .nav-btn {
@@ -95,6 +94,21 @@ h1 {
 
 .dashboard-section { display: none; }
 .dashboard-section.active { display: block; }
+.dashboard-context { display: none; }
+.dashboard-context.active { display: block; }
+.dashboard-navigation { display:flex; align-items:center; gap:16px; width:fit-content; max-width:100%; margin:12px 0 18px; padding:5px; background:#181b21; border:1px solid #2b2f38; border-radius:10px; }
+.dashboard-context-nav { display:flex; gap:10px; align-items:center; flex-wrap:nowrap; margin:0; }
+.dashboard-navigation-divider { width:1px; height:30px; flex:none; background:#626b78; }
+.context-btn { background:#252a33; color:#e8e8e8; border:1px solid #424955; border-radius:6px; padding:8px 12px; cursor:pointer; }
+.context-btn.active { background:#385b86; border-color:#6289b7; }
+.session-group-header { display:flex; align-items:baseline; gap:6px; margin: 22px 0 10px; padding: 12px 15px; background:#20242c; border:1px solid #343a45; border-radius:8px; font-weight:700; letter-spacing:.04em; }
+.session-group-header > div { font-size:24px; }
+.session-group-header time { display:inline; margin:0; color:#aeb5c0; font-size:16px; font-weight:500; letter-spacing:0; }
+.global-match-header { display:flex; align-items:baseline; gap:25px; flex-wrap:nowrap; overflow-x:auto; }
+.global-match-header .match-title { flex:none; font-size:16px; margin:0; white-space:nowrap; }
+.global-match-header .match-info { flex:none; flex-wrap:nowrap; gap:25px; white-space:nowrap; }
+.session-history-picker { display:flex; align-items:center; gap:8px; color:#9da4b0; font-size:12px; margin: 4px 0 14px; }
+.session-history-picker select { background:#191c22; color:#e8e8e8; padding:6px 8px; border:1px solid #424955; border-radius:5px; }
 
 .match {
     background: #1b1e24;
@@ -125,10 +139,6 @@ h1 {
 }
 
 .table-wrapper { overflow-x: auto; }
-
-.ranking-table-wrapper {
-    overflow: visible;
-}
 
 .ranking-match {
     overflow: visible;
@@ -178,103 +188,6 @@ h1 {
         vertical-align: middle;
     }
 
-    .ranking-table thead th {
-        top: 0;
-    }
-}
-
-.ranking-table thead th {
-    position: sticky;
-    top: var(--dashboard-top-height, 300px);
-    z-index: 50;
-    background: #111318;
-    box-shadow: 0 1px 0 #30343d;
-}
-
-/* The separate sticky ranking header is mobile-only.
-   Desktop uses the original table header. */
-.ranking-sticky-header {
-    display: none;
-}
-
-@media (max-width: 600px) {
-    .ranking-table {
-        width: 900px;
-        min-width: 900px;
-        max-width: none;
-        table-layout: fixed;
-    }
-
-    .ranking-table th,
-    .ranking-table td {
-        padding: 7px 8px;
-        font-size: 12px;
-        white-space: nowrap;
-    }
-
-    .ranking-table .weapons {
-        white-space: normal;
-        min-width: 180px;
-        max-width: 280px;
-    }
-
-    .ranking-table .award-badge {
-        display: inline-block;
-        margin: 2px 3px 2px 0;
-        vertical-align: middle;
-    }
-
-    /* iOS/Safari: use a separate sticky header because the
-       real table is inside the horizontal scroll container. */
-    .ranking-table-wrapper > .ranking-table thead {
-        display: none;
-    }
-
-    .ranking-sticky-header {
-        position: sticky;
-        top: var(--dashboard-top-height, 196px);
-        z-index: 60;
-        width: 100%;
-        overflow: hidden;
-        background: #111318;
-        box-shadow: 0 1px 0 #30343d;
-    }
-
-    .ranking-sticky-header {
-        display: block;
-    }
-
-    .ranking-sticky-table {
-        width: 900px;
-        min-width: 900px;
-        max-width: none;
-        table-layout: fixed;
-        margin: 0;
-        transform: translateX(0);
-        will-change: transform;
-    }
-
-    .ranking-sticky-table th {
-        background: #111318;
-        box-shadow: none;
-    }
-
-}
-
-/* Desktop keeps the original sticky table header. */
-.ranking-table-wrapper > .ranking-table thead th {
-    position: sticky;
-    top: var(--dashboard-top-height, 300px);
-    z-index: 50;
-    background: #111318;
-    box-shadow: 0 1px 0 #30343d;
-}
-
-@media (max-width: 600px) {
-    .ranking-table-wrapper > .ranking-table thead th {
-        position: static;
-        top: auto;
-    }
 }
 
 /* Match tables fit the available width.
@@ -691,10 +604,8 @@ tr:hover { background: #252932; }
         white-space: nowrap;
     }
 
-    .dashboard-nav {
-        width: 100%;
-        overflow-x: auto;
-    }
+    .dashboard-navigation { width:100%; overflow-x:auto; }
+    .dashboard-context-nav, .dashboard-nav { flex:none; }
     .nav-btn { white-space: nowrap; }
 }
 html {
@@ -728,52 +639,77 @@ html {
     margin-bottom: 4px;
 }
 
+/* Keep the Ranking table wide enough for all 11 fixed-width
+   columns while limiting horizontal scrolling to its wrapper. */
+.ranking-match .ranking-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ranking-table {
+    width: 100%;
+    min-width: 1500px;
+    max-width: none;
+    table-layout: fixed;
+}
+
+.ranking-header-mirror {
+    position: fixed;
+    display: block;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 999;
+    background: #15171c;
+    border-bottom: 1px solid #30343d;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .22);
+}
+
+.ranking-header-mirror-row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    will-change: transform;
+}
+
 /* Global Ranking: 11 columns. The generic table rules below
    only define widths for 10 columns, which pushed Awards
    outside the table. Keep all 11 columns inside 100%. */
 .ranking-table th:nth-child(1),
-.ranking-table td:nth-child(1),
-.ranking-sticky-table th:nth-child(1) { width: 4%; }
+.ranking-table td:nth-child(1) { width: 4%; }
 
 .ranking-table th:nth-child(2),
-.ranking-table td:nth-child(2),
-.ranking-sticky-table th:nth-child(2) { width: 15%; }
+.ranking-table td:nth-child(2) { width: 15%; }
 
 .ranking-table th:nth-child(3),
-.ranking-table td:nth-child(3),
-.ranking-sticky-table th:nth-child(3) { width: 6%; }
+.ranking-table td:nth-child(3) { width: 6%; }
 
 .ranking-table th:nth-child(4),
-.ranking-table td:nth-child(4),
-.ranking-sticky-table th:nth-child(4) { width: 6%; }
+.ranking-table td:nth-child(4) { width: 6%; }
 
 .ranking-table th:nth-child(5),
-.ranking-table td:nth-child(5),
-.ranking-sticky-table th:nth-child(5) { width: 8%; }
+.ranking-table td:nth-child(5) { width: 8%; }
 
 .ranking-table th:nth-child(6),
-.ranking-table td:nth-child(6),
-.ranking-sticky-table th:nth-child(6) { width: 9%; }
+.ranking-table td:nth-child(6) { width: 9%; }
 
 .ranking-table th:nth-child(7),
-.ranking-table td:nth-child(7),
-.ranking-sticky-table th:nth-child(7) { width: 8%; }
+.ranking-table td:nth-child(7) { width: 8%; }
 
 .ranking-table th:nth-child(8),
-.ranking-table td:nth-child(8),
-.ranking-sticky-table th:nth-child(8) { width: 9%; }
+.ranking-table td:nth-child(8) { width: 9%; }
 
 .ranking-table th:nth-child(9),
-.ranking-table td:nth-child(9),
-.ranking-sticky-table th:nth-child(9) { width: 8%; }
+.ranking-table td:nth-child(9) { width: 8%; }
 
 .ranking-table th:nth-child(10),
-.ranking-table td:nth-child(10),
-.ranking-sticky-table th:nth-child(10) { width: 9%; }
+.ranking-table td:nth-child(10) { width: 9%; }
 
 .ranking-table th:nth-child(11),
-.ranking-table td:nth-child(11),
-.ranking-sticky-table th:nth-child(11) { width: 18%; }
+.ranking-table td:nth-child(11) { width: 18%; }
 
 .ranking-table td:nth-child(11) {
     white-space: normal;
@@ -793,13 +729,142 @@ html {
 <div class="container">
 <div class="dashboard-top">
 <h1>Viciados do Catano</h1>
-<div class="subtitle">CS2 LAN Statistics v0.8.160</div>
-<nav class="dashboard-nav">
-    <button class="nav-btn active" data-section="overview">Matches</button>
-    <button class="nav-btn" data-section="ranking">Global Ranking</button>
-    <button class="nav-btn" data-section="awards">Awards</button>
-</nav>
+<div class="subtitle">CS2 LAN Statistics v0.9.0</div>
+<div class="dashboard-navigation">
+<div class="dashboard-context-nav">
+<button class="context-btn active" data-context="this-session">Current Session</button>
+<button class="context-btn" data-context="all-time">All Sessions</button></div>
+<span class="dashboard-navigation-divider" aria-hidden="true"></span>
+<nav class="dashboard-nav"><button class="nav-btn active" data-section="overview">Matches</button><button class="nav-btn" data-section="ranking">Ranking</button><button class="nav-btn" data-section="awards">Awards</button></nav>
 </div>
+</div>
+<div class="dashboard-context active" data-context-panel="this-session">
+<label class="session-history-picker">Browse previous sessions <select id="session-selector"><option value="this-session">Active session</option>
+<option value="session-1">Session #1 · 24/09/2026 20:38</option>
+</select></label>
+<section id="overview" class="dashboard-section active">
+<div class="match"><div class="empty">No active session. The next valid match will automatically start a new session.</div></div>
+</section>
+<section id="ranking" class="dashboard-section">
+<div class="match ranking-match">
+<div class="table-wrapper ranking-table-wrapper">
+<table class="ranking-table">
+<thead><tr>
+    <th>#</th><th>Player</th><th>Score</th><th>Matches</th><th>Kills</th><th>Deaths</th>
+    <th>Assists</th><th>K/D Ratio</th><th>Headshot %</th><th>Damage</th><th>Awards</th>
+</tr></thead><tbody>
+</tbody></table></div></div></section>
+<section id="awards" class="dashboard-section">
+<div class="match">
+<div class="awards-grid">
+<p class="global-record-note">Fastest Arms Race is a global record.</p>
+<div class="award-mvp-row"><div class="award-card award-card-unawarded" id="award-mvp">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/mvp_award.png"
+                 alt="LANStats MVP Award">
+        </div>
+    </div>
+</div></div><div class="award-secondary-grid"><div class="award-card" id="award-fastestarmsrace">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/fastestarmsrace_award.png"
+                 alt="LANStats FASTEST ARMS RACE Award">
+
+            <div class="award-player award-fastestarmsrace-player">Killm1ster | Portugal</div>
+
+            <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-time stat-extra-long">6m 26s</div>
+            <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-average stat-extra-long">22.72s</div>
+            <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-date stat-extra-long">24/09/2026</div>
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-headshot">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/headhunter_award.png"
+                 alt="LANStats Head Hunter Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-lowrider">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/agacha_award.png"
+                 alt="LANStats Low Rider Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-butcher">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/thebutcher_award.png"
+                 alt="LANStats The Butcher Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-camper">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/camper_award.png"
+                 alt="LANStats The Camper Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-blastking">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/blastking_award.png"
+                 alt="LANStats Blast King Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-johnwick">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/johnwick_award.png"
+                 alt="LANStats John Wick Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-sniperking">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/sniperking_award.png"
+                 alt="LANStats Sniper King Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-afiadordefacas">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/afiadordefacas_award.png"
+                 alt="LANStats Afiador de Facas Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-azelha">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/azelha_award.png"
+                 alt="LANStats Azelha Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-galinhas-mortas">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/chickenkiller_award.png"
+                 alt="LANStats Chicken Killer Award">
+        </div>
+    </div>
+</div></div>
+</div></div></section>
+</div>
+<div class="dashboard-context" data-context-panel="session-1">
+<div class="match historical-session-label">Consulting previous session: Session #1 &#183; 24/09/2026 20:38</div>
 <section id="overview" class="dashboard-section active">
 <div class="match">
 <div class="match-header">
@@ -1576,14 +1641,6 @@ html {
 </section>
 <section id="ranking" class="dashboard-section">
 <div class="match ranking-match">
-<div class="ranking-sticky-header">
-<table class="ranking-sticky-table">
-<thead><tr>
-    <th>#</th><th>Player</th><th>Score</th><th>Matches</th><th>Kills</th><th>Deaths</th>
-    <th>Assists</th><th>K/D Ratio</th><th>Headshot %</th><th>Damage</th><th>Awards</th>
-</tr></thead>
-</table>
-</div>
 <div class="table-wrapper ranking-table-wrapper">
 <table class="ranking-table">
 <thead><tr>
@@ -1659,6 +1716,7 @@ html {
 <section id="awards" class="dashboard-section">
 <div class="match">
 <div class="awards-grid">
+<p class="global-record-note">Fastest Arms Race is a global record.</p>
 <div class="award-mvp-row"><div class="award-card" id="award-mvp">
     <div class="award-card-inner">
         <div class="award-art">
@@ -1812,6 +1870,1007 @@ html {
     </div>
 </div></div>
 </div></div></section>
+</div>
+<div class="dashboard-context" data-context-panel="all-time">
+<section id="overview" class="dashboard-section active">
+<div class="session-group-header">
+<div>SESSION #1 ·</div>
+<time>24/09/2026 · 20:38</time>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #11 | shortdust</div>
+<div class="match-info">
+<span>Competitive</span>
+<span>24 rounds</span>
+<span>CT 21 – 3 T</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table team-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>MVPs</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="team-ct">
+<td>1</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">⭐4</td>
+<td class="positive">19</td>
+<td class="negative">15</td>
+<td>2</td>
+<td>1.27</td>
+<td>5</td>
+<td>26%</td>
+<td>2412</td>
+<td class="weapons">AK47 (9) · AUG (4) · MP5SD (3) · HKP2000 (1) · GLOCK (1) · AWP (1)</td>
+</tr>
+<tr class="team-ct">
+<td>2</td>
+<td class="player">RyzenPT</td>
+<td class="positive">⭐9</td>
+<td class="positive">16</td>
+<td class="negative">8</td>
+<td>2</td>
+<td>2.00</td>
+<td>7</td>
+<td>44%</td>
+<td>1890</td>
+<td class="weapons">AK47 (6) · M4A1_SILENCER (3) · FAMAS (2) · M4A1 (2) · DEAGLE (1) · USP_SILENCER (1) · AWP (1)</td>
+</tr>
+<tr class="team-ct">
+<td>3</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">⭐3</td>
+<td class="positive">15</td>
+<td class="negative">14</td>
+<td>1</td>
+<td>1.07</td>
+<td>7</td>
+<td>47%</td>
+<td>2269</td>
+<td class="weapons">AWP (5) · AK47 (4) · HKP2000 (2) · M4A1_SILENCER (2) · GLOCK (2)</td>
+</tr>
+<tr class="team-t team-separator">
+<td>4</td>
+<td class="player">pires.jp</td>
+<td class="positive">⭐3</td>
+<td class="positive">11</td>
+<td class="negative">18</td>
+<td>1</td>
+<td>0.61</td>
+<td>4</td>
+<td>36%</td>
+<td>1593</td>
+<td class="weapons">AK47 (4) · HKP2000 (3) · M4A1_SILENCER (3) · FAMAS (1)</td>
+</tr>
+<tr class="team-t">
+<td>5</td>
+<td class="player">hardlife</td>
+<td class="positive">⭐5</td>
+<td class="positive">11</td>
+<td class="negative">18</td>
+<td>1</td>
+<td>0.61</td>
+<td>1</td>
+<td>9%</td>
+<td>1489</td>
+<td class="weapons">M4A1_SILENCER (7) · GLOCK (2) · GALILAR (2)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #10 | fy_snow</div>
+<div class="match-info">
+<span>Arms Race</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">pires.jp</td>
+<td class="positive">3</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>3.00</td>
+<td>0</td>
+<td>0%</td>
+<td>374</td>
+<td class="weapons">SCAR20 (2) · AUG (1)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">RyzenPT</td>
+<td class="positive">2</td>
+<td class="negative">2</td>
+<td>1</td>
+<td>1.00</td>
+<td>1</td>
+<td>50%</td>
+<td>911</td>
+<td class="weapons">TASER (1) · SCAR20 (1)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">2</td>
+<td class="negative">4</td>
+<td>0</td>
+<td>0.50</td>
+<td>0</td>
+<td>0%</td>
+<td>220</td>
+<td class="weapons">KNIFE (1) · AWP (1)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">1</td>
+<td class="negative">3</td>
+<td>0</td>
+<td>0.33</td>
+<td>1</td>
+<td>100%</td>
+<td>253</td>
+<td class="weapons">SCAR20 (1)</td>
+</tr>
+<tr class="">
+<td>5</td>
+<td class="player">hardlife</td>
+<td class="positive">0</td>
+<td class="negative">2</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #9 | fy_snow</div>
+<div class="match-info">
+<span>Arms Race</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">34</td>
+<td class="negative">33</td>
+<td>3</td>
+<td>1.03</td>
+<td>14</td>
+<td>41%</td>
+<td>4707</td>
+<td class="weapons">SAWEDOFF (4) · SCAR20 (2) · AWP (2) · AK47 (2) · FAMAS (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MP7 (2) · MP5SD (2) · MAC10 (2) · SSG08 (2) · ELITE (2) · P250 (2) · GLOCK (2) · MAG7 (2)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">hardlife</td>
+<td class="positive">33</td>
+<td class="negative">37</td>
+<td>2</td>
+<td>0.89</td>
+<td>12</td>
+<td>36%</td>
+<td>4435</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AK47 (2) · FAMAS (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MP7 (2) · MP5SD (2) · MAC10 (2) · SSG08 (2) · ELITE (2) · P250 (2) · GLOCK (2) · MAG7 (2) · SAWEDOFF (2) · KNIFE (1)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">28</td>
+<td class="negative">29</td>
+<td>8</td>
+<td>0.97</td>
+<td>11</td>
+<td>39%</td>
+<td>4048</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AK47 (2) · FAMAS (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MP7 (2) · MP5SD (2) · MAC10 (2) · SSG08 (2) · ELITE (2) · P250 (2) · GLOCK (2)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">RyzenPT</td>
+<td class="positive">25</td>
+<td class="negative">24</td>
+<td>2</td>
+<td>1.04</td>
+<td>5</td>
+<td>20%</td>
+<td>2993</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AK47 (2) · FAMAS (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MP7 (2) · MP5SD (2) · MAC10 (2) · P250 (2) · SSG08 (1) · KNIFE_T (1) · ELITE (1)</td>
+</tr>
+<tr class="">
+<td>5</td>
+<td class="player">pires.jp</td>
+<td class="positive">17</td>
+<td class="negative">14</td>
+<td>4</td>
+<td>1.21</td>
+<td>3</td>
+<td>18%</td>
+<td>1769</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AK47 (2) · FAMAS (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MP7 (2) · MP5SD (1)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #8 | harbor</div>
+<div class="match-info">
+<span>Arms Race</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">RyzenPT</td>
+<td class="positive">32</td>
+<td class="negative">20</td>
+<td>3</td>
+<td>1.60</td>
+<td>15</td>
+<td>47%</td>
+<td>4133</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · M4A1 (2) · GALILAR (2) · M4A1_SILENCER (2) · SG556 (2) · M249 (2) · MP9 (2) · MP5SD (2) · KNIFE (2) · USP_SILENCER (2) · GLOCK (2) · TEC9 (2) · NOVA (2) · SAWEDOFF (2) · P90 (1) · REVOLVER (1)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">32</td>
+<td class="negative">35</td>
+<td>1</td>
+<td>0.91</td>
+<td>9</td>
+<td>28%</td>
+<td>4033</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · M4A1 (2) · GALILAR (2) · M4A1_SILENCER (2) · SG556 (2) · M249 (2) · MP9 (2) · MP5SD (2) · P90 (2) · REVOLVER (2) · USP_SILENCER (2) · GLOCK (2) · TEC9 (2) · NOVA (2) · SAWEDOFF (2)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">pires.jp</td>
+<td class="positive">25</td>
+<td class="negative">34</td>
+<td>2</td>
+<td>0.74</td>
+<td>6</td>
+<td>24%</td>
+<td>3174</td>
+<td class="weapons">P90 (4) · SCAR20 (2) · AWP (2) · M4A1 (2) · GALILAR (2) · M4A1_SILENCER (2) · SG556 (2) · M249 (2) · MP9 (2) · MP5SD (2) · REVOLVER (2) · USP_SILENCER (1)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">24</td>
+<td class="negative">22</td>
+<td>3</td>
+<td>1.09</td>
+<td>9</td>
+<td>38%</td>
+<td>3142</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · M4A1 (2) · GALILAR (2) · M4A1_SILENCER (2) · SG556 (2) · M249 (2) · MP9 (2) · MP5SD (2) · P90 (2) · REVOLVER (2) · USP_SILENCER (2)</td>
+</tr>
+<tr class="">
+<td>5</td>
+<td class="player">hardlife</td>
+<td class="positive">13</td>
+<td class="negative">15</td>
+<td>4</td>
+<td>0.87</td>
+<td>1</td>
+<td>8%</td>
+<td>1759</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · M4A1 (2) · GALILAR (2) · M4A1_SILENCER (2) · SG556 (2) · M249 (1)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #7 | ar_pool_day</div>
+<div class="match-info">
+<span>Arms Race</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">33</td>
+<td class="negative">32</td>
+<td>3</td>
+<td>1.03</td>
+<td>13</td>
+<td>39%</td>
+<td>4671</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AUG (2) · SG556 (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MAC10 (2) · BIZON (2) · UMP45 (2) · REVOLVER (2) · GLOCK (2) · USP_SILENCER (2) · P250 (2) · NOVA (2) · XM1014 (2) · KNIFE_T (1)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">hardlife</td>
+<td class="positive">31</td>
+<td class="negative">35</td>
+<td>5</td>
+<td>0.89</td>
+<td>9</td>
+<td>29%</td>
+<td>4911</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AUG (2) · SG556 (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MAC10 (2) · BIZON (2) · UMP45 (2) · REVOLVER (2) · GLOCK (2) · USP_SILENCER (2) · XM1014 (2) · P250 (1) · KNIFE (1) · TASER (1)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">30</td>
+<td class="negative">31</td>
+<td>2</td>
+<td>0.97</td>
+<td>5</td>
+<td>17%</td>
+<td>3522</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AUG (2) · SG556 (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · MAC10 (2) · BIZON (2) · UMP45 (2) · REVOLVER (2) · GLOCK (2) · USP_SILENCER (2) · P250 (2) · NOVA (2)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">RyzenPT</td>
+<td class="positive">21</td>
+<td class="negative">15</td>
+<td>1</td>
+<td>1.40</td>
+<td>2</td>
+<td>10%</td>
+<td>2440</td>
+<td class="weapons">MAC10 (5) · SCAR20 (2) · AWP (2) · AUG (2) · SG556 (2) · M4A1_SILENCER (2) · M4A1 (2) · M249 (2) · BIZON (2)</td>
+</tr>
+<tr class="">
+<td>5</td>
+<td class="player">pires.jp</td>
+<td class="positive">12</td>
+<td class="negative">14</td>
+<td>2</td>
+<td>0.86</td>
+<td>3</td>
+<td>25%</td>
+<td>1214</td>
+<td class="weapons">SCAR20 (2) · AWP (2) · AUG (2) · SG556 (2) · M4A1_SILENCER (2) · M4A1 (2)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #6 | ar_shoots</div>
+<div class="match-info">
+<span>Arms Race</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">32</td>
+<td class="negative">39</td>
+<td>0</td>
+<td>0.82</td>
+<td>13</td>
+<td>41%</td>
+<td>3948</td>
+<td class="weapons">G3SG1 (2) · AWP (2) · FAMAS (2) · AK47 (2) · AUG (2) · M4A1 (2) · NEGEV (2) · MAC10 (2) · BIZON (2) · MP9 (2) · REVOLVER (2) · GLOCK (2) · ELITE (2) · TEC9 (2) · MAG7 (2) · NOVA (2)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">RyzenPT</td>
+<td class="positive">28</td>
+<td class="negative">23</td>
+<td>7</td>
+<td>1.22</td>
+<td>14</td>
+<td>50%</td>
+<td>4083</td>
+<td class="weapons">G3SG1 (2) · AWP (2) · FAMAS (2) · AK47 (2) · AUG (2) · M4A1 (2) · NEGEV (2) · MAC10 (2) · BIZON (2) · MP9 (2) · REVOLVER (2) · TEC9 (2) · GLOCK (1) · KNIFE_T (1) · ELITE (1) · MAG7 (1)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">27</td>
+<td class="negative">18</td>
+<td>3</td>
+<td>1.50</td>
+<td>8</td>
+<td>30%</td>
+<td>3293</td>
+<td class="weapons">G3SG1 (2) · AWP (2) · FAMAS (2) · AK47 (2) · AUG (2) · M4A1 (2) · NEGEV (2) · MAC10 (2) · BIZON (2) · MP9 (2) · REVOLVER (2) · GLOCK (2) · ELITE (2) · TEC9 (1)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">pires.jp</td>
+<td class="positive">23</td>
+<td class="negative">38</td>
+<td>1</td>
+<td>0.61</td>
+<td>11</td>
+<td>48%</td>
+<td>2993</td>
+<td class="weapons">MP9 (4) · G3SG1 (2) · AWP (2) · FAMAS (2) · AK47 (2) · AUG (2) · M4A1 (2) · NEGEV (2) · MAC10 (2) · BIZON (2) · REVOLVER (1)</td>
+</tr>
+<tr class="">
+<td>5</td>
+<td class="player">hardlife</td>
+<td class="positive">22</td>
+<td class="negative">14</td>
+<td>2</td>
+<td>1.57</td>
+<td>8</td>
+<td>36%</td>
+<td>3155</td>
+<td class="weapons">G3SG1 (2) · AWP (2) · FAMAS (2) · AK47 (2) · AUG (2) · M4A1 (2) · NEGEV (2) · MAC10 (2) · BIZON (2) · MP9 (2) · REVOLVER (2)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #5 | anztecient</div>
+<div class="match-info">
+<span>Deathmatch</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">41</td>
+<td class="negative">25</td>
+<td>0</td>
+<td>1.64</td>
+<td>6</td>
+<td>15%</td>
+<td>6048</td>
+<td class="weapons">AWP (38) · AUG (2) · FIVESEVEN (1)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">30</td>
+<td class="negative">24</td>
+<td>2</td>
+<td>1.25</td>
+<td>10</td>
+<td>33%</td>
+<td>4861</td>
+<td class="weapons">AWP (20) · DEAGLE (5) · SG556 (4) · AK47 (1)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">RyzenPT</td>
+<td class="positive">21</td>
+<td class="negative">18</td>
+<td>2</td>
+<td>1.17</td>
+<td>8</td>
+<td>38%</td>
+<td>2947</td>
+<td class="weapons">AWP (8) · USP_SILENCER (3) · DEAGLE (3) · M4A1 (2) · M4A1_SILENCER (2) · P250 (2) · KNIFE (1)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">hardlife</td>
+<td class="positive">18</td>
+<td class="negative">31</td>
+<td>0</td>
+<td>0.58</td>
+<td>6</td>
+<td>33%</td>
+<td>2462</td>
+<td class="weapons">FIVESEVEN (8) · AWP (6) · M4A1_SILENCER (3) · KNIFE (1)</td>
+</tr>
+<tr class="">
+<td>5</td>
+<td class="player">pires.jp</td>
+<td class="positive">9</td>
+<td class="negative">25</td>
+<td>1</td>
+<td>0.36</td>
+<td>4</td>
+<td>44%</td>
+<td>1127</td>
+<td class="weapons">AK47 (4) · AWP (2) · NOVA (2) · P90 (1)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #4 | untitled_1</div>
+<div class="match-info">
+<span>Deathmatch</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">43</td>
+<td class="negative">26</td>
+<td>0</td>
+<td>1.65</td>
+<td>15</td>
+<td>35%</td>
+<td>9705</td>
+<td class="weapons">AWP (43)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">33</td>
+<td class="negative">21</td>
+<td>0</td>
+<td>1.57</td>
+<td>11</td>
+<td>33%</td>
+<td>7054</td>
+<td class="weapons">AWP (32) · KNIFE (1)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">hardlife</td>
+<td class="positive">20</td>
+<td class="negative">25</td>
+<td>0</td>
+<td>0.80</td>
+<td>3</td>
+<td>15%</td>
+<td>3403</td>
+<td class="weapons">AWP (18) · FIVESEVEN (1) · KNIFE (1)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">RyzenPT</td>
+<td class="positive">11</td>
+<td class="negative">27</td>
+<td>2</td>
+<td>0.41</td>
+<td>5</td>
+<td>45%</td>
+<td>2667</td>
+<td class="weapons">AWP (9) · DEAGLE (2)</td>
+</tr>
+<tr class="">
+<td>5</td>
+<td class="player">pires.jp</td>
+<td class="positive">7</td>
+<td class="negative">15</td>
+<td>0</td>
+<td>0.47</td>
+<td>3</td>
+<td>43%</td>
+<td>950</td>
+<td class="weapons">M4A1_SILENCER (3) · AUG (2) · SSG08 (1) · AWP (1)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #3 | ar_pool_day</div>
+<div class="match-info">
+<span>Deathmatch</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">Killm1ster | Portugal</td>
+<td class="positive">19</td>
+<td class="negative">11</td>
+<td>1</td>
+<td>1.73</td>
+<td>12</td>
+<td>63%</td>
+<td>2573</td>
+<td class="weapons">M4A1 (4) · SCAR20 (4) · SG556 (3) · P90 (3) · NOVA (2) · AUG (2) · XM1014 (1)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">10</td>
+<td class="negative">11</td>
+<td>1</td>
+<td>0.91</td>
+<td>4</td>
+<td>40%</td>
+<td>1908</td>
+<td class="weapons">AWP (6) · NOVA (2) · GALILAR (2)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">hardlife</td>
+<td class="positive">9</td>
+<td class="negative">10</td>
+<td>0</td>
+<td>0.90</td>
+<td>3</td>
+<td>33%</td>
+<td>1133</td>
+<td class="weapons">P90 (9)</td>
+</tr>
+<tr class="">
+<td>4</td>
+<td class="player">RyzenPT</td>
+<td class="positive">0</td>
+<td class="negative">6</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #2 | untitled_1</div>
+<div class="match-info">
+<span>Deathmatch</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">4</td>
+<td class="negative">4</td>
+<td>1</td>
+<td>1.00</td>
+<td>1</td>
+<td>25%</td>
+<td>1111</td>
+<td class="weapons">AWP (2) · KNIFE_T (2)</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">hardlife</td>
+<td class="positive">4</td>
+<td class="negative">3</td>
+<td>0</td>
+<td>1.33</td>
+<td>0</td>
+<td>0%</td>
+<td>423</td>
+<td class="weapons">AWP (4)</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">RyzenPT</td>
+<td class="positive">1</td>
+<td class="negative">5</td>
+<td>1</td>
+<td>0.20</td>
+<td>0</td>
+<td>0%</td>
+<td>126</td>
+<td class="weapons">USP_SILENCER (1)</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #1 | de_dust2</div>
+<div class="match-info">
+<span>Deathmatch</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table standard-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="">
+<td>1</td>
+<td class="player">FlavioPrates</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+<tr class="">
+<td>2</td>
+<td class="player">RyzenPT</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+<tr class="">
+<td>3</td>
+<td class="player">hardlife</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+</tbody></table></div>
+</div>
+</section>
+<section id="ranking" class="dashboard-section">
+<div class="match ranking-match">
+<div class="table-wrapper ranking-table-wrapper">
+<table class="ranking-table">
+<thead><tr>
+    <th>#</th><th>Player</th><th>Score</th><th>Matches</th><th>Kills</th><th>Deaths</th>
+    <th>Assists</th><th>K/D Ratio</th><th>Headshot %</th><th>Damage</th><th>Awards</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td class="ranking-player">Killm1ster | Portugal</td>
+<td class="score">552</td>
+<td>9</td>
+<td class="positive">240</td>
+<td class="negative">202</td>
+<td>17</td>
+<td>1.19</td>
+<td>35%</td>
+<td>36800</td>
+<td class="weapons"><a class="award-badge" href="#award-fastestarmsrace" title="Fastest Arms Race completion time.">Fatest Arms Race</a> <a class="award-badge" href="#award-mvp" title="Best overall K/D performance.">MVP</a> <a class="award-badge" href="#award-sniperking" title="Most AWP and SSG 08 kills.">Sniper King</a> <a class="award-badge" href="#award-headshot" title="Most headshots.">Head Hunter</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td class="ranking-player">FlavioPrates</td>
+<td class="score">516</td>
+<td>11</td>
+<td class="positive">217</td>
+<td class="negative">196</td>
+<td>14</td>
+<td>1.11</td>
+<td>32%</td>
+<td>32978</td>
+<td class="weapons"><a class="award-badge" href="#award-johnwick" title="Most pistol kills.">John Wick</a> <a class="award-badge" href="#award-lowrider" title="Most actual crouch time, with at least one minute of active gameplay.">Low Rider</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td class="ranking-player">RyzenPT</td>
+<td class="score">475</td>
+<td>11</td>
+<td class="positive">157</td>
+<td class="negative">149</td>
+<td>21</td>
+<td>1.05</td>
+<td>36%</td>
+<td>22190</td>
+<td class="weapons"><a class="award-badge" href="#award-butcher" title="Most knife kills.">The Butcher</a> <a class="award-badge" href="#award-camper" title="Most accumulated camping time.">The Camper</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td class="ranking-player">hardlife</td>
+<td class="score">457</td>
+<td>11</td>
+<td class="positive">161</td>
+<td class="negative">191</td>
+<td>14</td>
+<td>0.84</td>
+<td>27%</td>
+<td>23170</td>
+<td class="weapons"><a class="award-badge" href="#award-afiadordefacas" title="Most knife deaths suffered.">Afiador de Facas</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td class="ranking-player">pires.jp</td>
+<td class="score">438</td>
+<td>8</td>
+<td class="positive">107</td>
+<td class="negative">159</td>
+<td>11</td>
+<td>0.67</td>
+<td>32%</td>
+<td>13194</td>
+<td class="weapons"><a class="award-badge" href="#award-azelha" title="Most missed firearm shots.">Azelha</a></td>
+</tr>
+</tbody></table></div></div></section>
+<section id="awards" class="dashboard-section">
+<div class="match">
+<div class="awards-grid">
+<p class="global-record-note">Fastest Arms Race is a global record.</p>
+<div class="award-mvp-row"><div class="award-card" id="award-mvp">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/mvp_award.png"
+                 alt="LANStats MVP Award">
+
+            <div class="award-player award-mvp-player">Killm1ster | Portugal</div>
+
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-kills ">240</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-deaths ">202</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-kd ">1.19</div>
+        </div>
+    </div>
+</div></div><div class="award-secondary-grid"><div class="award-card" id="award-headshot">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/headhunter_award.png"
+                 alt="LANStats Head Hunter Award">
+
+            <div class="award-player award-headhunter-player">Killm1ster | Portugal</div>
+
+            <div class="award-stat-value award-stat-headshots ">85</div>
+            <div class="award-stat-value award-stat-hspercent ">35%</div>
+            <div class="award-stat-value award-stat-totalkills ">240</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-lowrider">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/agacha_award.png"
+                 alt="LANStats Low Rider Award">
+
+            <div class="award-player award-lowrider-player">FlavioPrates</div>
+
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-time stat-extra-long">1046.7s</div>
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-count ">372</div>
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-percent stat-long">24.0%</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-butcher">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/thebutcher_award.png"
+                 alt="LANStats The Butcher Award">
+
+            <div class="award-player award-thebutcher-player">RyzenPT</div>
+
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-kills ">5</div>
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-hits ">8</div>
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-damage ">483</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-camper">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/camper_award.png"
+                 alt="LANStats The Camper Award">
+
+            <div class="award-player award-camper-player">RyzenPT</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-time stat-extra-long">15m 48s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-longest stat-extra-long">5m 27s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-kills ">0</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-johnwick">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/johnwick_award.png"
+                 alt="LANStats John Wick Award">
+
+            <div class="award-player award-johnwick-player">FlavioPrates</div>
+
+            <div class="award-stat-value award-johnwick-stat award-johnwick-stat-kills ">34</div>
+            <div class="award-stat-value award-johnwick-stat award-johnwick-stat-shots ">331</div>
+            <div class="award-stat-value award-johnwick-stat award-johnwick-stat-damage ">4816</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-sniperking">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/sniperking_award.png"
+                 alt="LANStats Rei Da Sniper Award">
+
+            <div class="award-player award-sniperking-player">Killm1ster | Portugal</div>
+
+            <div class="award-stat-value award-sniperking-stat award-sniperking-stat-kills ">92</div>
+            <div class="award-stat-value award-sniperking-stat award-sniperking-stat-longest stat-extra-long">79.3 m</div>
+            <div class="award-stat-value award-sniperking-stat award-sniperking-stat-average stat-extra-long">28.1 m</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-afiadordefacas">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/afiadordefacas_award.png"
+                 alt="LANStats Afiador de Facas Award">
+
+            <div class="award-player award-afiadordefacas-player">hardlife</div>
+
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-deaths ">4</div>
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-hits ">8</div>
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-damage ">636</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-azelha">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image" src="cards/azelha_award.png" alt="LANStats Azelha Award">
+            <div class="award-player award-azelha-player">pires.jp</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-shots ">2242</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-missed ">1837</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-accuracy stat-long">18.1%</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-fastestarmsrace">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/fastestarmsrace_award.png"
+                 alt="LANStats FASTEST ARMS RACE Award">
+
+            <div class="award-player award-fastestarmsrace-player">Killm1ster | Portugal</div>
+
+            <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-time stat-extra-long">6m 26s</div>
+            <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-average stat-extra-long">22.72s</div>
+            <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-date stat-extra-long">24/09/2026</div>
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-blastking">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/blastking_award.png"
+                 alt="LANStats Blast King Award">
+        </div>
+    </div>
+</div><div class="award-card award-card-unawarded" id="award-galinhas-mortas">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/chickenkiller_award.png"
+                 alt="LANStats Chicken Killer Award">
+        </div>
+    </div>
+</div></div>
+</div></div></section>
+</div>
     <script>
     const dashboardTop = document.querySelector('.dashboard-top');
     
@@ -1829,6 +2888,145 @@ html {
     if (dashboardTop && 'ResizeObserver' in window) {
     new ResizeObserver(updateDashboardTopHeight).observe(dashboardTop);
     }
+
+    let rankingMirrorState = null;
+    let rankingMirrorFrame = 0;
+    let rankingMirrorNeedsMeasure = false;
+
+    function removeRankingHeaderMirror() {
+        if (rankingMirrorState?.element) rankingMirrorState.element.remove();
+        rankingMirrorState = null;
+    }
+
+    function measureRankingHeaderMirror(state) {
+        const tableRect = state.table.getBoundingClientRect();
+        const headerRect = state.table.tHead.getBoundingClientRect();
+        const headerCells = Array.from(state.table.tHead.rows[0]?.cells ?? []);
+
+        state.row.replaceChildren();
+        state.cells = [];
+        state.row.style.width = `${tableRect.width}px`;
+        state.row.style.height = `${headerRect.height}px`;
+
+        for (const sourceCell of headerCells) {
+            const sourceRect = sourceCell.getBoundingClientRect();
+            const mirrorCell = document.createElement('div');
+            const computed = window.getComputedStyle(sourceCell);
+
+            for (let i = 0; i < computed.length; i++) {
+                const property = computed[i];
+                mirrorCell.style.setProperty(property, computed.getPropertyValue(property));
+            }
+
+            mirrorCell.innerHTML = sourceCell.innerHTML;
+            mirrorCell.className = 'ranking-header-mirror-cell';
+            mirrorCell.style.setProperty('display', 'block');
+            mirrorCell.style.setProperty('position', 'absolute');
+            mirrorCell.style.setProperty('box-sizing', 'border-box');
+            mirrorCell.style.setProperty('margin', '0');
+            mirrorCell.style.setProperty('left', `${sourceRect.left - tableRect.left}px`);
+            mirrorCell.style.setProperty('top', `${sourceRect.top - headerRect.top}px`);
+            mirrorCell.style.setProperty('width', `${sourceRect.width}px`);
+            mirrorCell.style.setProperty('height', `${sourceRect.height}px`);
+
+            state.row.appendChild(mirrorCell);
+            state.cells.push({ source: sourceCell, mirror: mirrorCell });
+        }
+
+        state.element.style.height = `${headerRect.height}px`;
+        state.measuredTableWidth = tableRect.width;
+        state.measuredHeaderHeight = headerRect.height;
+    }
+
+    function createRankingHeaderMirror(table) {
+        const element = document.createElement('div');
+        const row = document.createElement('div');
+        element.className = 'ranking-header-mirror';
+        element.setAttribute('aria-hidden', 'true');
+        row.className = 'ranking-header-mirror-row';
+        element.appendChild(row);
+        document.body.appendChild(element);
+
+        const state = { table, element, row, cells: [] };
+        measureRankingHeaderMirror(state);
+        return state;
+    }
+
+    function updateRankingHeaderMirror(forceMeasure = false) {
+        const activePanel = document.querySelector('.dashboard-context.active');
+        const rankingSection = activePanel?.querySelector('#ranking.dashboard-section.active');
+        const wrapper = rankingSection?.querySelector('.ranking-table-wrapper');
+        const table = wrapper?.querySelector('.ranking-table');
+
+        if (!wrapper || !table?.tHead?.rows.length) {
+            removeRankingHeaderMirror();
+            return;
+        }
+
+        const header = table.tHead;
+        const headerRect = header.getBoundingClientRect();
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const headerHeight = headerRect.height;
+        const stickyTop = Math.max(0, dashboardTop?.getBoundingClientRect().bottom ?? 0);
+        const wrapperVisibleHorizontally = wrapperRect.right > 0 && wrapperRect.left < window.innerWidth;
+        const shouldShow = wrapperVisibleHorizontally &&
+            headerRect.top <= stickyTop &&
+            wrapperRect.bottom > stickyTop + headerHeight &&
+            headerHeight > 0;
+
+        if (!shouldShow) {
+            removeRankingHeaderMirror();
+            return;
+        }
+
+        if (rankingMirrorState?.table !== table) {
+            removeRankingHeaderMirror();
+            rankingMirrorState = createRankingHeaderMirror(table);
+        } else if (forceMeasure) {
+            measureRankingHeaderMirror(rankingMirrorState);
+        }
+
+        const state = rankingMirrorState;
+        const contentLeft = wrapperRect.left + wrapper.clientLeft;
+        const tableRect = table.getBoundingClientRect();
+        state.element.style.left = `${contentLeft}px`;
+        state.element.style.top = `${stickyTop}px`;
+        state.element.style.width = `${wrapper.clientWidth}px`;
+        state.element.style.height = `${headerHeight}px`;
+        state.row.style.transform = `translate3d(${tableRect.left - contentLeft}px, 0, 0)`;
+    }
+
+    function scheduleRankingHeaderMirrorUpdate(forceMeasure = false) {
+        rankingMirrorNeedsMeasure = rankingMirrorNeedsMeasure || forceMeasure;
+        if (rankingMirrorFrame) return;
+        rankingMirrorFrame = requestAnimationFrame(() => {
+            rankingMirrorFrame = 0;
+            const shouldMeasure = rankingMirrorNeedsMeasure;
+            rankingMirrorNeedsMeasure = false;
+            updateRankingHeaderMirror(shouldMeasure);
+        });
+    }
+
+    window.addEventListener('scroll', () => scheduleRankingHeaderMirrorUpdate(), { passive: true });
+    window.addEventListener('resize', () => scheduleRankingHeaderMirrorUpdate(true), { passive: true });
+    document.querySelectorAll('.ranking-table-wrapper').forEach(wrapper => {
+        wrapper.addEventListener('scroll', () => scheduleRankingHeaderMirrorUpdate(), { passive: true });
+    });
+
+    if ('ResizeObserver' in window) {
+        const rankingLayoutObserver = new ResizeObserver(() => scheduleRankingHeaderMirrorUpdate(true));
+        document.querySelectorAll('.ranking-table-wrapper, .ranking-table, .ranking-table thead, .dashboard-top')
+            .forEach(element => rankingLayoutObserver.observe(element));
+    }
+
+    if ('MutationObserver' in window) {
+        const rankingContextObserver = new MutationObserver(() => scheduleRankingHeaderMirrorUpdate(true));
+        document.querySelectorAll('.dashboard-context, .dashboard-section').forEach(element => {
+            rankingContextObserver.observe(element, { attributes: true, attributeFilter: ['class'] });
+        });
+    }
+
+    scheduleRankingHeaderMirrorUpdate(true);
     
     document.querySelectorAll('a.award-badge').forEach(link => {
         link.addEventListener('click', event => {
@@ -1837,19 +3035,23 @@ html {
 
             event.preventDefault();
 
+            const panel = link.closest('.dashboard-context');
+            if (!panel) return;
             const awardsButton = document.querySelector('.nav-btn[data-section="awards"]');
-            const awardsSection = document.getElementById('awards');
+            const awardsSection = panel.querySelector('#awards');
 
             document.querySelectorAll('.nav-btn')
                 .forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.dashboard-section')
+            panel.querySelectorAll('.dashboard-section')
                 .forEach(s => s.classList.remove('active'));
 
+            document.querySelectorAll('.dashboard-context').forEach(p => p.classList.remove('active'));
+            panel.classList.add('active');
             if (awardsButton) awardsButton.classList.add('active');
             if (awardsSection) awardsSection.classList.add('active');
 
             const scrollToAward = () => {
-                const target = document.querySelector(targetId);
+                const target = panel.querySelector(targetId);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
@@ -1868,43 +3070,44 @@ html {
         });
     });
 
-    const rankingScroll = document.querySelector('.ranking-table-wrapper');
-    const rankingStickyTable = document.querySelector('.ranking-sticky-table');
-
-    function syncRankingStickyHeader() {
-    if (!rankingScroll || !rankingStickyTable) return;
-
-    rankingStickyTable.style.transform =
-    `translateX(${-rankingScroll.scrollLeft}px)`;
-    }
-
-    if (rankingScroll) {
-    rankingScroll.addEventListener(
-    'scroll',
-    syncRankingStickyHeader,
-    { passive: true }
-    );
-    syncRankingStickyHeader();
-    }
-
     document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+    const panel = document.querySelector('.dashboard-context.active');
+    if (!panel) return;
     window.scrollTo(0, 0);
     document.querySelectorAll('.nav-btn')
     .forEach(b => b.classList.remove('active'));
     
-    document.querySelectorAll('.dashboard-section')
+    panel.querySelectorAll('.dashboard-section')
     .forEach(s => s.classList.remove('active'));
     
     btn.classList.add('active');
-    document.getElementById(btn.dataset.section)
+    panel.querySelector('#' + btn.dataset.section)
     .classList.add('active');
 
     if (btn.dataset.section === 'ranking') {
-    if (rankingScroll) rankingScroll.scrollLeft = 0;
-    syncRankingStickyHeader();
+    const rankingWrapper = panel.querySelector('.ranking-table-wrapper');
+    if (rankingWrapper) rankingWrapper.scrollLeft = 0;
     }
     });
     });
+
+    function activateContext(key) {
+        if (key === 'this-session') {
+            const selector = document.getElementById('session-selector');
+            if (selector) selector.value = 'this-session';
+        }
+        document.querySelectorAll('.dashboard-context').forEach(p => p.classList.toggle('active', p.dataset.contextPanel === key));
+        const primaryContext = key === 'all-time' ? 'all-time' : 'this-session';
+        document.querySelectorAll('.context-btn').forEach(b => b.classList.toggle('active', b.dataset.context === primaryContext));
+        const panel = document.querySelector('.dashboard-context.active');
+        if (!panel) return;
+        panel.querySelectorAll('.dashboard-section').forEach((s, i) => s.classList.toggle('active', i === 0));
+        document.querySelectorAll('.nav-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+        updateDashboardTopHeight();
+    }
+    document.querySelectorAll('.context-btn').forEach(b => b.addEventListener('click', () => activateContext(b.dataset.context)));
+    const sessionSelector = document.getElementById('session-selector');
+    if (sessionSelector) sessionSelector.addEventListener('change', () => activateContext(sessionSelector.value));
     </script>
 </div></body></html>
