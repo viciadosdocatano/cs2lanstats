@@ -743,7 +743,36 @@ html {
 <option value="session-1">Session #1 · 24/09/2026 20:38</option>
 </select></label>
 <section id="overview" class="dashboard-section active">
-<div class="match"><div class="empty">No active session. The next valid match will automatically start a new session.</div></div>
+<div class="match">
+<div class="match-header">
+<div class="match-title">MATCH #1 | de_inferno</div>
+<div class="match-info">
+<span>08/10/2026 20:44</span>
+<span>Competitive</span>
+<span>3 rounds</span>
+<span>CT 2 – 1 T</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table team-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>MVPs</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="team-t">
+<td>1</td>
+<td class="player">hardlife</td>
+<td class="positive">-</td>
+<td class="positive">0</td>
+<td class="negative">3</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+</tbody></table></div>
+</div>
 </section>
 <section id="ranking" class="dashboard-section">
 <div class="match ranking-match">
@@ -753,20 +782,170 @@ html {
     <th>#</th><th>Player</th><th>Score</th><th>Matches</th><th>Kills</th><th>Deaths</th>
     <th>Assists</th><th>K/D Ratio</th><th>Headshot %</th><th>Damage</th><th>Awards</th>
 </tr></thead><tbody>
+<tr>
+<td>1</td>
+<td class="ranking-player">Tae</td>
+<td class="score">486</td>
+<td>1</td>
+<td class="positive">2</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>2.00</td>
+<td>50%</td>
+<td>395</td>
+<td class="weapons"><a class="award-badge" href="#award-mvp" title="Best overall K/D performance.">MVP</a> <a class="award-badge" href="#award-butcher" title="Most knife kills.">The Butcher</a> <a class="award-badge" href="#award-headshot" title="Most headshots.">Head Hunter</a> <a class="award-badge" href="#award-lowrider" title="Most actual crouch time, with at least one minute of active gameplay.">Low Rider</a> <a class="award-badge" href="#award-azelha" title="Most missed firearm shots.">Azelha</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td class="ranking-player">hardlife</td>
+<td class="score">456</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">3</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><a class="award-badge" href="#award-afiadordefacas" title="Most knife deaths suffered.">Afiador de Facas</a> <a class="award-badge" href="#award-camper" title="Most accumulated camping time.">The Camper</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td class="ranking-player">Killm1ster | Portugal</td>
+<td class="score">455</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><a class="award-badge" href="#award-fastestarmsrace" title="Fastest Arms Race completion time.">Fatest Arms Race</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td class="ranking-player">Ruphio</td>
+<td class="score">455</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><span class="muted">—</span></td>
+</tr>
+<tr>
+<td>5</td>
+<td class="ranking-player">&#127355;&#127358;&#127345;&#127352;&#127357;&#127351;&#127358;</td>
+<td class="score">455</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><span class="muted">—</span></td>
+</tr>
 </tbody></table></div></div></section>
 <section id="awards" class="dashboard-section">
 <div class="match">
 <div class="awards-grid">
 <p class="global-record-note">Fastest Arms Race is a global record.</p>
-<div class="award-mvp-row"><div class="award-card award-card-unawarded" id="award-mvp">
+<div class="award-mvp-row"><div class="award-card" id="award-mvp">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
                  src="cards/mvp_award.png"
                  alt="LANStats MVP Award">
+
+            <div class="award-player award-mvp-player">Tae</div>
+
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-kills ">2</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-deaths ">1</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-kd ">2.00</div>
         </div>
     </div>
-</div></div><div class="award-secondary-grid"><div class="award-card" id="award-fastestarmsrace">
+</div></div><div class="award-secondary-grid"><div class="award-card" id="award-headshot">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/headhunter_award.png"
+                 alt="LANStats Head Hunter Award">
+
+            <div class="award-player award-headhunter-player">Tae</div>
+
+            <div class="award-stat-value award-stat-headshots ">1</div>
+            <div class="award-stat-value award-stat-hspercent ">50%</div>
+            <div class="award-stat-value award-stat-totalkills ">2</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-lowrider">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/agacha_award.png"
+                 alt="LANStats Low Rider Award">
+
+            <div class="award-player award-lowrider-player">Tae</div>
+
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-time stat-long">14.1s</div>
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-count ">7</div>
+            <div class="award-stat-value award-lowrider-stat award-lowrider-stat-percent ">7.6%</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-butcher">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/thebutcher_award.png"
+                 alt="LANStats The Butcher Award">
+
+            <div class="award-player award-thebutcher-player">Tae</div>
+
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-kills ">1</div>
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-hits ">2</div>
+            <div class="award-stat-value award-thebutcher-stat award-thebutcher-stat-damage ">270</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-camper">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/camper_award.png"
+                 alt="LANStats The Camper Award">
+
+            <div class="award-player award-camper-player">hardlife</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-time stat-extra-long">3m 07s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-longest stat-extra-long">1m 30s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-kills ">0</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-afiadordefacas">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image"
+                 src="cards/afiadordefacas_award.png"
+                 alt="LANStats Afiador de Facas Award">
+
+            <div class="award-player award-afiadordefacas-player">hardlife</div>
+
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-deaths ">1</div>
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-hits ">2</div>
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-damage ">270</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-azelha">
+    <div class="award-card-inner">
+        <div class="award-art">
+            <img class="award-art-image" src="cards/azelha_award.png" alt="LANStats Azelha Award">
+            <div class="award-player award-azelha-player">Tae</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-shots ">2</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-missed ">1</div>
+            <div class="award-stat-value award-azelha-stat award-azelha-stat-accuracy stat-long">50.0%</div>
+        </div>
+    </div>
+</div><div class="award-card" id="award-fastestarmsrace">
     <div class="award-card-inner">
         <div class="award-art">
             <img class="award-art-image"
@@ -778,38 +957,6 @@ html {
             <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-time stat-extra-long">6m 26s</div>
             <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-average stat-extra-long">22.72s</div>
             <div class="award-stat-value award-fastestarmsrace-stat award-fastestarmsrace-stat-date stat-extra-long">24/09/2026</div>
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-headshot">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/headhunter_award.png"
-                 alt="LANStats Head Hunter Award">
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-lowrider">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/agacha_award.png"
-                 alt="LANStats Low Rider Award">
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-butcher">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/thebutcher_award.png"
-                 alt="LANStats The Butcher Award">
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-camper">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/camper_award.png"
-                 alt="LANStats The Camper Award">
         </div>
     </div>
 </div><div class="award-card award-card-unawarded" id="award-blastking">
@@ -834,22 +981,6 @@ html {
             <img class="award-art-image"
                  src="cards/sniperking_award.png"
                  alt="LANStats Sniper King Award">
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-afiadordefacas">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/afiadordefacas_award.png"
-                 alt="LANStats Afiador de Facas Award">
-        </div>
-    </div>
-</div><div class="award-card award-card-unawarded" id="award-azelha">
-    <div class="award-card-inner">
-        <div class="award-art">
-            <img class="award-art-image"
-                 src="cards/azelha_award.png"
-                 alt="LANStats Azelha Award">
         </div>
     </div>
 </div><div class="award-card award-card-unawarded" id="award-galinhas-mortas">
@@ -1874,6 +2005,39 @@ html {
 <div class="dashboard-context" data-context-panel="all-time">
 <section id="overview" class="dashboard-section active">
 <div class="session-group-header">
+<div>SESSION #2 ·</div>
+<time>08/10/2026 · 20:44</time>
+</div>
+<div class="match">
+<div class="match-header global-match-header">
+<div class="match-title">MATCH #12 | de_inferno</div>
+<div class="match-info">
+<span>Competitive</span>
+<span>3 rounds</span>
+<span>CT 2 – 1 T</span>
+</div>
+</div>
+<div class="table-wrapper"><table class="match-table team-match-table">
+<thead><tr>
+<th>#</th><th>Player</th><th>MVPs</th><th>Kills</th><th>Deaths</th><th>Assists</th>
+<th>K/D Ratio</th><th>Headshots</th><th>Headshot %</th><th>Damage</th><th>Weapons</th>
+</tr></thead><tbody>
+<tr class="team-t">
+<td>1</td>
+<td class="player">hardlife</td>
+<td class="positive">-</td>
+<td class="positive">0</td>
+<td class="negative">3</td>
+<td>0</td>
+<td>0.00</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons">-</td>
+</tr>
+</tbody></table></div>
+</div>
+<div class="session-group-header">
 <div>SESSION #1 ·</div>
 <time>24/09/2026 · 20:38</time>
 </div>
@@ -2650,12 +2814,12 @@ html {
 <tr>
 <td>1</td>
 <td class="ranking-player">Killm1ster | Portugal</td>
-<td class="score">552</td>
-<td>9</td>
+<td class="score">545</td>
+<td>10</td>
 <td class="positive">240</td>
-<td class="negative">202</td>
+<td class="negative">203</td>
 <td>17</td>
-<td>1.19</td>
+<td>1.18</td>
 <td>35%</td>
 <td>36800</td>
 <td class="weapons"><a class="award-badge" href="#award-fastestarmsrace" title="Fastest Arms Race completion time.">Fatest Arms Race</a> <a class="award-badge" href="#award-mvp" title="Best overall K/D performance.">MVP</a> <a class="award-badge" href="#award-sniperking" title="Most AWP and SSG 08 kills.">Sniper King</a> <a class="award-badge" href="#award-headshot" title="Most headshots.">Head Hunter</a></td>
@@ -2675,8 +2839,21 @@ html {
 </tr>
 <tr>
 <td>3</td>
+<td class="ranking-player">Tae</td>
+<td class="score">483</td>
+<td>1</td>
+<td class="positive">2</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>2.00</td>
+<td>50%</td>
+<td>395</td>
+<td class="weapons"><span class="muted">—</span></td>
+</tr>
+<tr>
+<td>4</td>
 <td class="ranking-player">RyzenPT</td>
-<td class="score">475</td>
+<td class="score">470</td>
 <td>11</td>
 <td class="positive">157</td>
 <td class="negative">149</td>
@@ -2684,28 +2861,41 @@ html {
 <td>1.05</td>
 <td>36%</td>
 <td>22190</td>
-<td class="weapons"><a class="award-badge" href="#award-butcher" title="Most knife kills.">The Butcher</a> <a class="award-badge" href="#award-camper" title="Most accumulated camping time.">The Camper</a></td>
-</tr>
-<tr>
-<td>4</td>
-<td class="ranking-player">hardlife</td>
-<td class="score">457</td>
-<td>11</td>
-<td class="positive">161</td>
-<td class="negative">191</td>
-<td>14</td>
-<td>0.84</td>
-<td>27%</td>
-<td>23170</td>
-<td class="weapons"><a class="award-badge" href="#award-afiadordefacas" title="Most knife deaths suffered.">Afiador de Facas</a></td>
+<td class="weapons"><a class="award-badge" href="#award-butcher" title="Most knife kills.">The Butcher</a></td>
 </tr>
 <tr>
 <td>5</td>
+<td class="ranking-player">&#127355;&#127358;&#127345;&#127352;&#127357;&#127351;&#127358;</td>
+<td class="score">455</td>
+<td>1</td>
+<td class="positive">0</td>
+<td class="negative">1</td>
+<td>0</td>
+<td>0.00</td>
+<td>0%</td>
+<td>0</td>
+<td class="weapons"><span class="muted">—</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td class="ranking-player">hardlife</td>
+<td class="score">446</td>
+<td>12</td>
+<td class="positive">161</td>
+<td class="negative">194</td>
+<td>14</td>
+<td>0.83</td>
+<td>27%</td>
+<td>23170</td>
+<td class="weapons"><a class="award-badge" href="#award-afiadordefacas" title="Most knife deaths suffered.">Afiador de Facas</a> <a class="award-badge" href="#award-camper" title="Most accumulated camping time.">The Camper</a></td>
+</tr>
+<tr>
+<td>7</td>
 <td class="ranking-player">pires.jp</td>
-<td class="score">438</td>
-<td>8</td>
+<td class="score">420</td>
+<td>9</td>
 <td class="positive">107</td>
-<td class="negative">159</td>
+<td class="negative">160</td>
 <td>11</td>
 <td>0.67</td>
 <td>32%</td>
@@ -2727,8 +2917,8 @@ html {
             <div class="award-player award-mvp-player">Killm1ster | Portugal</div>
 
             <div class="award-stat-value award-mvp-stat award-mvp-stat-kills ">240</div>
-            <div class="award-stat-value award-mvp-stat award-mvp-stat-deaths ">202</div>
-            <div class="award-stat-value award-mvp-stat award-mvp-stat-kd ">1.19</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-deaths ">203</div>
+            <div class="award-stat-value award-mvp-stat award-mvp-stat-kd ">1.18</div>
         </div>
     </div>
 </div></div><div class="award-secondary-grid"><div class="award-card" id="award-headshot">
@@ -2780,10 +2970,10 @@ html {
                  src="cards/camper_award.png"
                  alt="LANStats The Camper Award">
 
-            <div class="award-player award-camper-player">RyzenPT</div>
-            <div class="award-stat-value award-camper-stat award-camper-stat-time stat-extra-long">15m 48s</div>
-            <div class="award-stat-value award-camper-stat award-camper-stat-longest stat-extra-long">5m 27s</div>
-            <div class="award-stat-value award-camper-stat award-camper-stat-kills ">0</div>
+            <div class="award-player award-camper-player">hardlife</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-time stat-extra-long">18m 19s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-longest stat-extra-long">5m 37s</div>
+            <div class="award-stat-value award-camper-stat award-camper-stat-kills ">4</div>
         </div>
     </div>
 </div><div class="award-card" id="award-johnwick">
@@ -2823,9 +3013,9 @@ html {
 
             <div class="award-player award-afiadordefacas-player">hardlife</div>
 
-            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-deaths ">4</div>
-            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-hits ">8</div>
-            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-damage ">636</div>
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-deaths ">5</div>
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-hits ">10</div>
+            <div class="award-stat-value award-afiadordefacas-stat award-afiadordefacas-stat-damage ">906</div>
         </div>
     </div>
 </div><div class="award-card" id="award-azelha">
